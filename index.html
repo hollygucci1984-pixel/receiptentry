@@ -26,7 +26,12 @@
         <section class="panels">
           <article class="panel image-panel">
             <div id="dropZone" class="drop-zone">
-              <input id="fileInput" type="file" accept="image/*" />
+              <input
+                id="fileInput"
+                type="file"
+                accept="image/*,.heic,.heif"
+                capture="environment"
+              />
               <div class="drop-copy">
                 <strong>画像を選択またはドロップ</strong>
                 <span>レシート、請求書、納品書などに対応</span>
@@ -93,82 +98,3 @@
                     登録番号・請求書番号
                     <input id="documentNumber" placeholder="例: T1234 / INV-001" />
                   </label>
-                </div>
-                <label>
-                  摘要
-                  <textarea id="memo" rows="3" placeholder="用途や補足を入力"></textarea>
-                </label>
-              </form>
-
-              <div class="section-title">
-                <h2>明細</h2>
-                <button id="addLineButton" class="ghost compact" type="button">行を追加</button>
-              </div>
-              <div class="line-table-wrap">
-                <table class="line-table">
-                  <thead>
-                    <tr>
-                      <th>品目</th>
-                      <th>数量</th>
-                      <th>金額</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody id="lineItems"></tbody>
-                </table>
-              </div>
-            </section>
-
-            <section id="rawTab" class="tab-panel">
-              <textarea id="rawText" class="raw-text" placeholder="OCR結果、または手入力した文字列が入ります"></textarea>
-              <div class="raw-actions">
-                <button id="parseButton" class="ghost" type="button">項目へ反映</button>
-                <button id="copyRawButton" class="ghost" type="button">全文コピー</button>
-              </div>
-            </section>
-
-            <section id="historyTab" class="tab-panel">
-              <div id="historyList" class="history-list"></div>
-            </section>
-          </article>
-        </section>
-      </section>
-
-      <aside class="side-rail">
-        <h2>転記パネル</h2>
-        <div class="validation-box">
-          <p class="label">確認</p>
-          <ul id="validationList"></ul>
-        </div>
-        <div class="copy-grid">
-          <button data-copy="vendorName" type="button">取引先をコピー</button>
-          <button data-copy="documentDate" type="button">日付をコピー</button>
-          <button data-copy="totalAmount" type="button">合計をコピー</button>
-          <button data-copy="taxAmount" type="button">税額をコピー</button>
-          <button data-copy="documentNumber" type="button">番号をコピー</button>
-        </div>
-        <label class="system-template">
-          システム貼り付け用
-          <textarea id="systemPayload" readonly></textarea>
-        </label>
-        <div class="export-actions">
-          <button id="copyPayloadButton" class="primary" type="button">まとめてコピー</button>
-          <button id="saveRecordButton" type="button">履歴に保存</button>
-          <button id="downloadCsvButton" type="button">CSV出力</button>
-        </div>
-      </aside>
-    </main>
-
-    <template id="lineItemTemplate">
-      <tr>
-        <td><input class="line-name" placeholder="品目" /></td>
-        <td><input class="line-qty" inputmode="decimal" placeholder="1" /></td>
-        <td><input class="line-price" inputmode="numeric" placeholder="0" /></td>
-        <td><button class="icon-button delete-line" type="button" title="削除">×</button></td>
-      </tr>
-    </template>
-
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-    <script src="./app.js"></script>
-  </body>
-</html>
